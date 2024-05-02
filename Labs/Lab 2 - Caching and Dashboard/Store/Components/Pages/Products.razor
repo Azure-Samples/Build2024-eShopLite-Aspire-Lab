@@ -4,6 +4,7 @@
 @inject ProductService ProductService
 @inject IConfiguration Configuration
 @attribute [StreamRendering(true)]
+@attribute [Microsoft.AspNetCore.OutputCaching.OutputCache(Duration = 10)]
 
 <PageTitle>Products</PageTitle>
 
