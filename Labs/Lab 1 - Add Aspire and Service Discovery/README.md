@@ -22,28 +22,30 @@ All of the code for this lab is available in the `Start` folder. If you need hel
     ```
 
 1. To add the **Products** project to the Aspire orchestration, right click on the **Products** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
-1. A warning will appear indicating that the solution already has Aspire support. Select **Yes** to add the project to the orchestration.
+    > A warning will appear indicating that the solution already has Aspire support. Select **Yes** to add the project to the orchestration.
 
 Both projects are now part of the Aspire orchestration. Now we need to make sure that the **Store**  can discover the **Products** backend url through .NET Aspire's service discovery.
 
 ## Enabling service discovery
 
 1. Open the **Program.cs** file from the **eShopLite.AppHost** project.
-1. Update the code that adds the **Store** to the Aspire orchestration to also include a reference to the **Products**:
+2. Update the code to first assign *ProjectResource* products to a variable, then edit the code that adds **Store** to the Aspire orchestration to also include a reference to the **Products**:
 
     ```csharp
+    var products = builder.AddProject<Projects.Store>("products");
+
     builder.AddProject<Projects.Store>("store").WithReference(products);
     ```
 
-1. Next update the **appSettings.json** in the **Store** project for the **ProductEndpoint** and **ProductEndpointHttps**:
+3. Next update the **appSettings.json** in the **Store** project for the **ProductEndpoint** and **ProductEndpointHttps**:
 
     ```json
     "ProductEndpoint": "http://products",
     "ProductEndpointHttps": "https://products",
     ```
 
-1. Press **F5** or start debugging the application.
-1. The Aspire dashboard appears.
-1. Click on the endpoint for the **store** project.
-1. A new tab appears with the same eShopLite application, but now the **Products** backend is being called through service discovery.
+4. Press **F5** or start debugging the application.
+5. The Aspire dashboard appears.
+6. Click on the endpoint for the **store** project.
+7. A new tab appears with the same eShopLite application, but now the **Products** backend is being called through service discovery.
 
