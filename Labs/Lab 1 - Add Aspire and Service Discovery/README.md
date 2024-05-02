@@ -41,7 +41,7 @@ Both projects are now part of the Aspire orchestration. Now we need to make sure
 
     ```json
     "ProductEndpoint": "http://products",
-    "ProductEndpointHttps": "https://products",
+    "ProductEndpointHttps": "https://products"
     ```
 
 4. Press **F5** or start debugging the application.
