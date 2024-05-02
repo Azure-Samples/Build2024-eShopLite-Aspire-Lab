@@ -29,7 +29,7 @@ Both projects are now part of the Aspire orchestration. Now we need to make sure
 ## Enabling service discovery
 
 1. Open the **Program.cs** file from the **eShopLite.AppHost** project.
-2. Update the code to first assign *ProjectResource* products to a variable, then edit the code that adds **Store** to the Aspire orchestration to also include a reference to the **Products**:
+1. Update the code to first assign *ProjectResource* products to a variable, then edit the code that adds **Store** to the Aspire orchestration to also include a reference to the **Products**:
 
     ```csharp
     var products = builder.AddProject<Projects.Store>("products");
@@ -37,15 +37,15 @@ Both projects are now part of the Aspire orchestration. Now we need to make sure
     builder.AddProject<Projects.Store>("store").WithReference(products);
     ```
 
-3. Next update the **appSettings.json** in the **Store** project for the **ProductEndpoint** and **ProductEndpointHttps**:
+1. Next update the **appSettings.json** in the **Store** project for the **ProductEndpoint** and **ProductEndpointHttps**:
 
     ```json
     "ProductEndpoint": "http://products",
     "ProductEndpointHttps": "https://products"
     ```
 
-4. Press **F5** or start debugging the application.
-5. The Aspire dashboard appears.
-6. Click on the endpoint for the **store** project.
-7. A new tab appears with the same eShopLite application, but now the **Products** backend is being called through service discovery.
+1. Press **F5** or start debugging the application.
+1. The Aspire dashboard appears.
+1. Click on the endpoint for the **store** project.
+1. A new tab appears with the same eShopLite application, but now the **Products** backend is being called through service discovery.
 
