@@ -7,7 +7,7 @@ All of the code for this lab is available in the `Start` folder. If you need hel
 ## Adding .NET Aspire to the eShopLite application
 
 1. Open Visual Studio 2022
-1. Open the **eShopLite** solution from the **Labs/Lab 1 - Add Aspire and Service Discovery/Start** folder.
+1. Open the **eShopLite** solution from the **Labs/Lab 1 - Add Aspire and Service Discovery** folder.
 1. To see the application running before adding Aspire, right click on the solution node in Solution Explorer and select **Configure Startup Projects**. Select **Multiple startup projects** and set the **Products** and **Store** projects to **Start**. The run the application.
 1. Close the web browsers to stop debugging the applications.
 1. Now let's add Aspire. Back in Visual Studio, right-click the **Store** project, select **Add**, and then select **.NET Aspire Orchestrator Support** and then select **Ok**.
