@@ -8,6 +8,7 @@
 * Visual Studio v17.10 (including any v17.10 Previews)
 * .NET Aspire workload
 * Docker Desktop
+* Azure Developer CLI
 
 [Full tooling and setup instructions](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling)
 
