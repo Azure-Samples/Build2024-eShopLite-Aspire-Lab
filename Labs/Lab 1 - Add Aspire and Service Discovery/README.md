@@ -2,8 +2,6 @@
 
 In this lab, you will add the .NET Aspire library to an existing .NET Core application and enable service discovery. We'll be using the eShopLite application.
 
-All of the code for this lab is available in the `Start` folder. If you need help along the way, the final code can be found in the `Finish` folder.
-
 ## Adding .NET Aspire to the eShopLite application
 
 1. Open Visual Studio 2022
@@ -24,7 +22,7 @@ All of the code for this lab is available in the `Start` folder. If you need hel
 1. To add the **Products** project to the Aspire orchestration, right click on the **Products** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
     > A warning will appear indicating that the solution already has Aspire support. Select **Yes** to add the project to the orchestration.
 
-Both projects are now part of the Aspire orchestration. Now we need to make sure that the **Store**  can discover the **Products** backend url through .NET Aspire's service discovery.
+Both projects are now part of the Aspire orchestration. Now we need to make sure that the **Store**  can discover the **Products** backend URL through .NET Aspire's service discovery.
 
 ## Enabling service discovery
 
