@@ -28,7 +28,7 @@ In this lab, you will deploy the entire application to Azure Container Apps (ACA
 
    - `? How do you want to initialize your app?`
      - `> Use code in the current directory`
-   - `? Select an optio`
+   - `? Select an option`
      - `> Confirm and continue initializing my app`
    - `? Enter a new environment name`
      - `<RANDOM_NAME>`

@@ -61,4 +61,4 @@ Let's test it:
 1. From the pgAdmin website, you manage the database database. To visualize the products table, expand the **Aspire instances** node, then **pg > Databases > productsdb > Schemas > Tables**.
 1. You can see all the rows by right-clicking on the **products** table and selecting **View/Edit Data > All Rows**.
 1. Now going back the the .NET Aspire dashboard, click on **store** the endpoints, a new tab will open with the store website.
-1. The store works just like before but now uses a PostgreSQL database in a container.
+1. The store works like before but now uses a PostgreSQL database in a container.

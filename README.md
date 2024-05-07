@@ -8,10 +8,14 @@
 * Visual Studio v17.10 (including any v17.10 Previews)
 * .NET Aspire workload
 * Docker Desktop
-* Azure Developer CLI
+* Azure Developer CLI (`azd`)
 
 [Full tooling and setup instructions](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/setup-tooling)
 
 ## What you'll learn
 
-In this lab...
+In this lab you will:
+  - Learn how to add .NET Aspire to your .NET application and enable service discovery. 
+  - Use Redis caching to increase performance of the application and discover how .NET Aspire makes it easy to access Redis caching services.
+  - Deploy the entire application to Azure Container Apps (ACA) using the Azure Developer CLI (`azd`).
+  - Optionally, add a database into a container to the application using .NET Aspire.
