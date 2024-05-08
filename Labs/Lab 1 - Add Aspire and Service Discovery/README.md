@@ -77,13 +77,28 @@ Now we need to make sure that the **Store** can discover the **Products** backen
 Service discovery is a way for developers to use logical names instead of physical addresses (IP address and port) to refer to external services. So instead of having to know the IP address and port of the **Products** backend, the **Store** can refer to it by its logical name, for example `products`.
 
 1. Open the **Program.cs** file from the **eShopLite.AppHost** project.
-1. Update the code to first assign *ProjectResource* products to a variable, then edit the code that adds **Store** to the Aspire orchestration to also include a reference to the **Products**:
+1. Delete the 2 lines of code that add the **Store** and **Products** projects to the Aspire orchestration:
 
     ```csharp
-    var products = builder.AddProject<Projects.Store>("products");
+    builder.AddProject<Projects.Store>("store");
+    builder.AddProject<Projects.Products>("products");
+    ```
 
+1. Add the **Products** back in, this time storing it in a variable:
+
+    ```csharp
+    var products = builder.AddProject<Projects.Products>("products");
+    ```
+
+    This is naming the **Products** project as `products` so that it can be referred to by that name from other projects in the solution.
+
+1. Then add the **Store** to the Aspire orchestration and also include a reference to the **Products**:
+
+    ```csharp
     builder.AddProject<Projects.Store>("store").WithReference(products);
     ```
+
+    Now when **Store** needs to invoke **Products**, it can refer to it by the logical name `products`. In other words, the URL of the **Products** backend is now `http://products`.
 
 1. Next update the **appSettings.json** in the **Store** project for the **ProductEndpoint** and **ProductEndpointHttps**:
 
@@ -94,6 +109,8 @@ Service discovery is a way for developers to use logical names instead of physic
 
 1. Press **F5** or start debugging the application.
 1. The Aspire dashboard appears.
-1. Click on the endpoint for the **store** project.
-1. A new tab appears with the same eShopLite application, but now the **Products** backend is being called through service discovery.
 
+    ![Aspire Dashboard](images/aspire-dashboard.png)
+
+1. Click on the endpoint for the **store** project in the dashboard.
+1. A new tab appears with the same eShopLite application, but now the **Products** backend is being called through service discovery.
