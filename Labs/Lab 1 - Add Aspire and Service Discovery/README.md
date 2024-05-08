@@ -67,12 +67,14 @@ Both projects are now part of the Aspire orchestration. Here's a recap of all th
 * The .NET Aspire Dashboard is added to your solution, which enables shortcuts to access all the project endpoints in your solution.
 * The dashboard adds logs, traces, and metrics for the projects in your solution.
 * In the **Store**'s Program.cs:
-  * Adds a call to AddServiceDefaults that enables the default OpenTelemetry, meters, and service discovery.
-  * Adds a call to MapDefaultEndpoints that enables the default endpoints, such as /health and /alive.
+  * Adds a call to `AddServiceDefaults` that enables the default OpenTelemetry, meters, and service discovery.
+  * Adds a call to `MapDefaultEndpoints` that enables the default endpoints, such as `/health` and `/alive`.
 
 Now we need to make sure that the **Store** can discover the **Products** backend URL through .NET Aspire's service discovery.
 
 ## Enabling service discovery
+
+Service discovery is a way for developers to use logical names instead of physical addresses (IP address and port) to refer to external services. So instead of having to know the IP address and port of the **Products** backend, the **Store** can refer to it by its logical name, for example `products`.
 
 1. Open the **Program.cs** file from the **eShopLite.AppHost** project.
 1. Update the code to first assign *ProjectResource* products to a variable, then edit the code that adds **Store** to the Aspire orchestration to also include a reference to the **Products**:
