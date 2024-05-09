@@ -2,25 +2,36 @@
 
 In this lab, you will deploy the entire application to Azure Container Apps (ACA) using the Azure Developer CLI (`azd`).
 
+`azd` is a command line interface tool that helps developers provision resources in and deploy applications to Azure. It provides best practices and developer-friendly commands that map to key stages in the development lifecycle. It provisions Azure resources via Bicep files and can deploy .NET applications to various PaaS services such as Azure Container Apps, Azure Functions, and Azure App Service.
+
+## Update or install the Azure Developer CLI
+
+You'll need to be sure to have the latest version of the Azure Developer CLI installed. You can use winget to do that.
+
+    ```powershell
+    winget upgrade Microsoft.Azd
+    ```
+
+If you don't already have the Azure Developer CLI installed, you can install it using winget:
+
+    ```powershell
+    winget install Microsoft.Azd
+    ```
+
 ## Login to Azure
 
 1. Open a terminal and run the following command to login to Azure:
 
-    ```bash
+    ```powershell
     azd auth login
     ```
 
 ## Initialize the deployment environment
 
-1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
-
-    ```bash
-    cd "$(git rev-parse --show-toplevel)/Labs/Lab 3 - Deploy"
-    ```
-
+1. Make sure you are in the `Labs/Lab 3 - Deploy` directory
 1. Run the following command to initialize the deployment environment:
 
-    ```bash
+    ```powershell
     azd init
     ```
 
@@ -50,7 +61,7 @@ In this lab, you will deploy the entire application to Azure Container Apps (ACA
 
 1. Run the following command to provision and deploy the application to Azure Container Apps:
 
-    ```bash
+    ```powershell
     azd up
     ```
 
@@ -62,7 +73,7 @@ In this lab, you will deploy the entire application to Azure Container Apps (ACA
      - `> <AZURE_LOCATION>`
 
    > **Note**:
-   > 
+   >
    > 1. If you have only one Azure subscription, it will be automatically chosen.
    > 1. Replace `<AZURE_SUBSCRIPTION>` and `<AZURE_LOCATION>` with your Azure subscription and location.
 
@@ -72,14 +83,9 @@ In this lab, you will deploy the entire application to Azure Container Apps (ACA
 ## Analyze the provisioning
 
 1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
-
-    ```bash
-    cd "$(git rev-parse --show-toplevel)/Labs/Lab 3 - Deploy"
-    ```
-
 1. Generate Bicep files from the app:
 
-    ```bash
+    ```powershell
     azd config set alpha.infraSynth on
     azd infra synth
     ```
@@ -95,11 +101,6 @@ In this lab, you will deploy the entire application to Azure Container Apps (ACA
 ## Analyze the deployment
 
 1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
-
-    ```bash
-    cd "$(git rev-parse --show-toplevel)/Labs/Lab 3 - Deploy"
-    ```
-
 1. Generate manifest files from the app:
 
     ```bash
@@ -114,4 +115,3 @@ In this lab, you will deploy the entire application to Azure Container Apps (ACA
    - `aspire-manifest.json`
 
 1. Open the `aspire-manifest.json` file and see which resources are being deployed.
-
