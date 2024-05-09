@@ -2,6 +2,37 @@
 
 In this lab, you will deploy the entire application to Azure Container Apps (ACA) using the Azure Developer CLI (`azd`).
 
+## Expose the store app to the Internet
+
+As a default, all apps are not exposed to the Internet. Therefore, you need to expose the store app to the Internet by adding the `WithExternalHttpEndpoints` method to the store project.
+
+1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
+
+    ```bash
+    cd "$(git rev-parse --show-toplevel)/Labs/Lab 3 - Deploy"
+    ```
+
+1. Open `Labs\Lab 3 - Deploy\eShopLite.AppHost\Program.cs` and find the following line:
+
+    ```csharp
+    builder.AddProject<Projects.Store>("store")
+        .WithReference(products)
+        .WithReference(redis);
+    ```
+
+1. Add `.WithExternalHttpEndpoints()` right above the `.WithReference(products)` line:
+
+    ```csharp
+    builder.AddProject<Projects.Store>("store")
+        // Add this line 👇
+        .WithExternalHttpEndpoints()
+        // Add this line 👆
+        .WithReference(products)
+        .WithReference(redis);
+    ```
+
+1. Save the file.
+
 ## Login to Azure
 
 1. Open a terminal and run the following command to login to Azure:
