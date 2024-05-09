@@ -1,12 +1,8 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var redis = builder.AddRedis("redis");
-
-var products = builder.AddProject<Projects.Products>("products")
-    .WithReference(redis);
+var products = builder.AddProject<Projects.Products>("products");
 
 builder.AddProject<Projects.Store>("store")
-    .WithReference(products)
-    .WithReference(redis);
+    .WithReference(products);
     
 builder.Build().Run();

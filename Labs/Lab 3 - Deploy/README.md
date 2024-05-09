@@ -2,16 +2,15 @@
 
 In this lab, you will deploy the entire application to Azure Container Apps (ACA) using the Azure Developer CLI (`azd`).
 
+`azd` is a command line interface tool that helps developers provision resources in and deploy applications to Azure. It provides best practices and developer-friendly commands that map to key stages in the development lifecycle. It provisions Azure resources via Bicep files and can deploy .NET applications to various PaaS services such as Azure Container Apps, Azure Functions, and Azure App Service.
+
 ## Expose the store app to the Internet
 
-As a default, all apps are not exposed to the Internet. Therefore, you need to expose the store app to the Internet by adding the `WithExternalHttpEndpoints` method to the store project.
+Before deploying the application, we'll need to make sure it can be accessed from the public Internet.
+
+By default the applications are not exposed to the Internet. Therefore, you need to expose the store app to the Internet by adding the `WithExternalHttpEndpoints` method to the store project.
 
 1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
-
-    ```bash
-    cd "$(git rev-parse --show-toplevel)/Labs/Lab 3 - Deploy"
-    ```
-
 1. Open `Labs\Lab 3 - Deploy\eShopLite.AppHost\Program.cs` and find the following line:
 
     ```csharp
@@ -33,6 +32,20 @@ As a default, all apps are not exposed to the Internet. Therefore, you need to e
 
 1. Save the file.
 
+## Update or install the Azure Developer CLI
+
+You'll need to be sure to have the latest version of the Azure Developer CLI installed. You can use winget to do that.
+
+    ```bash
+    winget upgrade Microsoft.Azd
+    ```
+
+If you don't already have the Azure Developer CLI installed, you can install it using winget:
+
+    ```bash
+    winget install Microsoft.Azd
+    ```
+    
 ## Login to Azure
 
 1. Open a terminal and run the following command to login to Azure:
@@ -43,12 +56,7 @@ As a default, all apps are not exposed to the Internet. Therefore, you need to e
 
 ## Initialize the deployment environment
 
-1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
-
-    ```bash
-    cd "$(git rev-parse --show-toplevel)/Labs/Lab 3 - Deploy"
-    ```
-
+1. Make sure you are in the `Labs/Lab 3 - Deploy` directory
 1. Run the following command to initialize the deployment environment:
 
     ```bash
@@ -81,7 +89,7 @@ As a default, all apps are not exposed to the Internet. Therefore, you need to e
 
 1. Run the following command to provision and deploy the application to Azure Container Apps:
 
-    ```bash
+    ```powershell
     azd up
     ```
 
@@ -93,7 +101,7 @@ As a default, all apps are not exposed to the Internet. Therefore, you need to e
      - `> <AZURE_LOCATION>`
 
    > **Note**:
-   > 
+   >
    > 1. If you have only one Azure subscription, it will be automatically chosen.
    > 1. Replace `<AZURE_SUBSCRIPTION>` and `<AZURE_LOCATION>` with your Azure subscription and location.
 
@@ -117,14 +125,9 @@ As a default, all apps are not exposed to the Internet. Therefore, you need to e
 ## Analyze the provisioning
 
 1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
-
-    ```bash
-    cd "$(git rev-parse --show-toplevel)/Labs/Lab 3 - Deploy"
-    ```
-
 1. Generate Bicep files from the app:
 
-    ```bash
+    ```powershell
     azd config set alpha.infraSynth on
     azd infra synth
     ```
@@ -140,11 +143,6 @@ As a default, all apps are not exposed to the Internet. Therefore, you need to e
 ## Analyze the deployment
 
 1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
-
-    ```bash
-    cd "$(git rev-parse --show-toplevel)/Labs/Lab 3 - Deploy"
-    ```
-
 1. Generate manifest files from the app:
 
     ```bash
