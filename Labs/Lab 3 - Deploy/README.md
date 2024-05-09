@@ -100,6 +100,20 @@ As a default, all apps are not exposed to the Internet. Therefore, you need to e
 1. Wait for the deployment to complete. It may take a few minutes.
 1. Once the deployment is over, go to the Azure Portal and navigate to the resource group of `rg-<RANDOM_NAME>` and find the Azure Container Apps instances.
 
+   ![Lab 3 Deploy - results](./images/lab03-01.png)
+
+1. Click the Container Apps instance, `redis`, and find the `Application Url` value that indicates it's NOT exposed to the Internet.
+
+   ![Lab 3 Deploy - Redis Cache container](./images/lab03-02.png)
+
+1. Click the Container Apps instance, `products`, and find the `Application Url` value that indicates it's NOT exposed to the Internet.
+
+   ![Lab 3 Deploy - Products container](./images/lab03-03.png)
+
+1. Click the Container Apps instance, `store`, and find the `Application Url` value that indicates it IS exposed to the Internet.
+
+   ![Lab 3 Deploy - Store container](./images/lab03-04.png)
+
 ## Analyze the provisioning
 
 1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
@@ -145,4 +159,3 @@ As a default, all apps are not exposed to the Internet. Therefore, you need to e
    - `aspire-manifest.json`
 
 1. Open the `aspire-manifest.json` file and see which resources are being deployed.
-
