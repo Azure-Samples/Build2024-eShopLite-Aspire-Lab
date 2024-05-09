@@ -11,6 +11,7 @@ var products = builder.AddProject<Projects.Products>("products")
     .WithReference(productsdb);
 
 builder.AddProject<Projects.Store>("store")
+    .WithExternalHttpEndpoints()
     .WithReference(products)
     .WithReference(redis);
     
