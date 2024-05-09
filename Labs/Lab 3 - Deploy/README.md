@@ -4,25 +4,53 @@ In this lab, you will deploy the entire application to Azure Container Apps (ACA
 
 `azd` is a command line interface tool that helps developers provision resources in and deploy applications to Azure. It provides best practices and developer-friendly commands that map to key stages in the development lifecycle. It provisions Azure resources via Bicep files and can deploy .NET applications to various PaaS services such as Azure Container Apps, Azure Functions, and Azure App Service.
 
+## Expose the store app to the Internet
+
+Before deploying the application, we'll need to make sure it can be accessed from the public Internet.
+
+By default the applications are not exposed to the Internet. Therefore, you need to expose the store app to the Internet by adding the `WithExternalHttpEndpoints` method to the store project.
+
+1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
+1. Open `Labs\Lab 3 - Deploy\eShopLite.AppHost\Program.cs` and find the following line:
+
+    ```csharp
+    builder.AddProject<Projects.Store>("store")
+        .WithReference(products)
+        .WithReference(redis);
+    ```
+
+1. Add `.WithExternalHttpEndpoints()` right above the `.WithReference(products)` line:
+
+    ```csharp
+    builder.AddProject<Projects.Store>("store")
+        // Add this line 👇
+        .WithExternalHttpEndpoints()
+        // Add this line 👆
+        .WithReference(products)
+        .WithReference(redis);
+    ```
+
+1. Save the file.
+
 ## Update or install the Azure Developer CLI
 
 You'll need to be sure to have the latest version of the Azure Developer CLI installed. You can use winget to do that.
 
-    ```powershell
+    ```bash
     winget upgrade Microsoft.Azd
     ```
 
 If you don't already have the Azure Developer CLI installed, you can install it using winget:
 
-    ```powershell
+    ```bash
     winget install Microsoft.Azd
     ```
-
+    
 ## Login to Azure
 
 1. Open a terminal and run the following command to login to Azure:
 
-    ```powershell
+    ```bash
     azd auth login
     ```
 
@@ -31,7 +59,7 @@ If you don't already have the Azure Developer CLI installed, you can install it 
 1. Make sure you are in the `Labs/Lab 3 - Deploy` directory
 1. Run the following command to initialize the deployment environment:
 
-    ```powershell
+    ```bash
     azd init
     ```
 
@@ -79,6 +107,20 @@ If you don't already have the Azure Developer CLI installed, you can install it 
 
 1. Wait for the deployment to complete. It may take a few minutes.
 1. Once the deployment is over, go to the Azure Portal and navigate to the resource group of `rg-<RANDOM_NAME>` and find the Azure Container Apps instances.
+
+   ![Lab 3 Deploy - results](./images/lab03-01.png)
+
+1. Click the Container Apps instance, `redis`, and find the `Application Url` value that indicates it's NOT exposed to the Internet.
+
+   ![Lab 3 Deploy - Redis Cache container](./images/lab03-02.png)
+
+1. Click the Container Apps instance, `products`, and find the `Application Url` value that indicates it's NOT exposed to the Internet.
+
+   ![Lab 3 Deploy - Products container](./images/lab03-03.png)
+
+1. Click the Container Apps instance, `store`, and find the `Application Url` value that indicates it IS exposed to the Internet.
+
+   ![Lab 3 Deploy - Store container](./images/lab03-04.png)
 
 ## Analyze the provisioning
 
