@@ -6,12 +6,12 @@ In this lab, you will deploy the entire application to Azure Container Apps (ACA
 
 ## Expose the store app to the Internet
 
-Before deploying the application, we'll need to make sure it can be accessed from the public Internet.
+Before deploying the application, we'll need to update some code to make sure it the app is exposed to the public Internet.
 
-By default the applications are not exposed to the Internet. Therefore, you need to expose the store app to the Internet by adding the `WithExternalHttpEndpoints` method to the store project.
+You'll need to add the `WithExternalHttpEndpoints` method to the store project to do so.
 
-1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
-1. Open `Labs\Lab 3 - Deploy\eShopLite.AppHost\Program.cs` and find the following line:
+1. Open the eShopLite solution from the **Labs/Lab 3** directory. This should looks exactly like you left the solution in Lab 2. Or you can continue working with the solution you have been before.
+1. Open the **eShopLite.AppHost\Program.cs** file and find the following line:
 
     ```csharp
     builder.AddProject<Projects.Store>("store")
@@ -30,40 +30,42 @@ By default the applications are not exposed to the Internet. Therefore, you need
         .WithReference(redis);
     ```
 
-1. Save the file.
+    This will make sure the store app is exposed to the public Internet. Now we can get ready to create our Azure resources and deploy the application.
 
 ## Update or install the Azure Developer CLI
 
-You'll need to be sure to have the latest version of the Azure Developer CLI installed. You can use winget to do that.
+First you'll need to be sure to have the latest version of the Azure Developer CLI installed. You can use winget to do that.
 
-    ```bash
-    winget upgrade Microsoft.Azd
-    ```
+If you already have the Azure Developer CLI installed, you can upgrade it using winget:
+
+```powershell
+winget upgrade Microsoft.Azd
+```
 
 If you don't already have the Azure Developer CLI installed, you can install it using winget:
 
-    ```bash
-    winget install Microsoft.Azd
-    ```
-    
+```powershell
+winget install Microsoft.Azd
+```
+
 ## Login to Azure
 
 1. Open a terminal and run the following command to login to Azure:
 
-    ```bash
+    ```powershell
     azd auth login
     ```
 
 ## Initialize the deployment environment
 
-1. Make sure you are in the `Labs/Lab 3 - Deploy` directory
+1. Make sure your terminal is in a directory that contains the **eShopLite.sln** file. Whether it's the directory you've been making all the changes in, or **Labs\Lab 3 - Deploy**, you need to be at the same level as the solution file.
 1. Run the following command to initialize the deployment environment:
 
-    ```bash
+    ```powershell
     azd init
     ```
 
-1. Choose the following options:
+1. The Azure Developer CLI will prompt you with several questions. Answer them as follows:
 
    - `? How do you want to initialize your app?`
      - `> Use code in the current directory`
@@ -73,10 +75,10 @@ If you don't already have the Azure Developer CLI installed, you can install it 
      - `<RANDOM_NAME>`
 
    > **Note**:
-   > 
-   > 1. Replace `<RANDOM_NAME>` with your preferred environment name.
+   >
+   > Replace `<RANDOM_NAME>` with your preferred environment name. Use something that will be easy to remember and distinct in your environment. If you're running this in the Build lab, you could use your initials followed by "lab" followed by the time. For example, `ms-lab-1330`.
 
-1. Confirm the following files have been generated:
+1. Now go back to the directory and confirm the following files have been generated:
 
    - `.azure/.gitignore`
    - `.azure/config.json`
@@ -84,6 +86,8 @@ If you don't already have the Azure Developer CLI installed, you can install it 
    - `.azure/<RANDOM_NAME>/config.json`
    - `azure.yaml`
    - `next-steps.md`
+
+    If those files and directories exist, you've successfully initialized the deployment environment. Now we're ready to provision and deploy the application into Azure.
 
 ## Provision and deploy the application
 
@@ -93,7 +97,7 @@ If you don't already have the Azure Developer CLI installed, you can install it 
     azd up
     ```
 
-1. Choose the following options:
+1. Again, azd will prompt you with several questions. Answer them as follows:
 
    - `? Select an Azure Subscription to use:`
      - `> <AZURE_SUBSCRIPTION>`
@@ -102,30 +106,33 @@ If you don't already have the Azure Developer CLI installed, you can install it 
 
    > **Note**:
    >
-   > 1. If you have only one Azure subscription, it will be automatically chosen.
-   > 1. Replace `<AZURE_SUBSCRIPTION>` and `<AZURE_LOCATION>` with your Azure subscription and location.
+   > If you have only one Azure subscription, it will be automatically chosen.
+   >
+   > Replace `<AZURE_SUBSCRIPTION>` and `<AZURE_LOCATION>` with your Azure subscription and location.
 
-1. Wait for the deployment to complete. It may take a few minutes.
+1. Now azd will provision the Azure resources your application need and deploy your app to those resources. All from a single command! Wait for the deployment to complete. It may take a few minutes.
 1. Once the deployment is over, go to the Azure Portal and navigate to the resource group of `rg-<RANDOM_NAME>` and find the Azure Container Apps instances.
 
    ![Lab 3 Deploy - results](./images/lab03-01.png)
 
-1. Click the Container Apps instance, `redis`, and find the `Application Url` value that indicates it's NOT exposed to the Internet.
+1. Click the Container Apps instance, **redis**, and notice that the **Application Url** value has the word **internal** in it. This indicates the resource is NOT exposed to the Internet.
 
    ![Lab 3 Deploy - Redis Cache container](./images/lab03-02.png)
 
-1. Click the Container Apps instance, `products`, and find the `Application Url` value that indicates it's NOT exposed to the Internet.
+1. Click the Container Apps instance, **products**, again notice the word **internal** in the **Application Url** value.
 
    ![Lab 3 Deploy - Products container](./images/lab03-03.png)
 
-1. Click the Container Apps instance, `store`, and find the `Application Url` value that indicates it IS exposed to the Internet.
+1. Click the Container Apps instance, **store**, and note that **Application Url** does not contain the word **internal**. The store website is available to the Internet.
 
    ![Lab 3 Deploy - Store container](./images/lab03-04.png)
 
 ## Analyze the provisioning
 
-1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
-1. Generate Bicep files from the app:
+That might have seemed like magic, but we can have azd explain what it did by creating Bicep files for the resources it provisioned. This way we could put those infrastructure files in source control.
+
+1. Switch back to the terminal.
+1. Then you can generate the Bicep files by running the following commands:
 
     ```powershell
     azd config set alpha.infraSynth on
@@ -142,8 +149,9 @@ If you don't already have the Azure Developer CLI installed, you can install it 
 
 ## Analyze the deployment
 
-1. Make sure you are in the `Labs/Lab 3 - Deploy` directory:
-1. Generate manifest files from the app:
+When using azd outside of .NET Aspire, you have to specify which applications you want to deploy. But azd automatically detects the applications for you with .NET Aspire-based projects. You can still see what azd is deploying by generating a manifest file.
+
+1. From the terminal run:
 
     ```bash
     dotnet run --project eShopLite.AppHost/eShopLite.AppHost.csproj `
