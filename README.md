@@ -1,6 +1,6 @@
 # Get started building cloud native apps with .NET Aspire
 
-.NET Aspire is an opinionated, cloud-ready stack to build observable, production-ready distributed applications. In this workshop we'll look at the role .NET Aspire plays in .NET cloud native development and build an app! Learn how to build a containerized frontend and backend applications with orchestration to help with composition and service discovery. See how to add in Azure Redis Cache and monitor all the moving parts with the Aspire dashboard. We'll also deploy it to Azure Container Apps.
+.NET Aspire is an opinionated, cloud-ready stack to build observable, production-ready distributed applications. In this workshop we'll look at the role .NET Aspire plays in .NET cloud native development and build an app! Learn how to build a containerized frontend and backend applications with orchestration to help with composition and service discovery. See how to add in Azure Redis Cache and monitor all the moving parts with the Aspire dashboard. We'll also deploy it to Azure Container Apps. And if we have time, we'll add in a PostgreSQL database to the mix!
 
 ## Prerequisites
 
