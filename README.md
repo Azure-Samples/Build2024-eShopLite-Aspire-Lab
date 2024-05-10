@@ -20,3 +20,7 @@ In this lab you will:
     * Use Redis caching to increase performance of the application and discover how .NET Aspire makes it easy to access Redis caching services.
     * Deploy the entire application to Azure Container Apps (ACA) using the Azure Developer CLI (`azd`).
     * Optionally, add a database into a container to the application using .NET Aspire.
+
+## Next
+
+To get started, head over to the **Labs** directory to get started on Lab 1 - Add Aspire and Service Discovery to an existing app!
