@@ -1,57 +1,22 @@
-# Project Name
+# Get started building cloud native apps with .NET Aspire
 
-(short, 1-3 sentenced, description of the project)
+.NET Aspire is an opinionated, cloud-ready stack to build observable, production-ready distributed applications. In this workshop we'll look at the role .NET Aspire plays in .NET cloud native development and build an app! Learn how to build a containerized frontend and backend applications with orchestration to help with composition and service discovery. See how to add in Azure Redis Cache and monitor all the moving parts with the Aspire dashboard. We'll also deploy it to Azure Container Apps. And if we have time, we'll add in a PostgreSQL database to the mix!
 
-## Features
+## Prerequisites
 
-This project framework provides the following features:
+* .NET 8
+* Visual Studio v17.10 (including any v17.10 Previews)
+* .NET Aspire workload
+* Docker Desktop
+* Azure Developer CLI (`azd`)
 
-* Feature 1
-* Feature 2
-* ...
+[Full tooling and setup instructions](https://learn.microsoft.com/dotnet/aspire/fundamentals/setup-tooling)
 
-## Getting Started
+## What you'll learn
 
-### Prerequisites
+In this lab you will:
 
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [repository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+    * Learn how to add .NET Aspire to your .NET application and enable service discovery. 
+    * Use Redis caching to increase performance of the application and discover how .NET Aspire makes it easy to access Redis caching services.
+    * Deploy the entire application to Azure Container Apps (ACA) using the Azure Developer CLI (`azd`).
+    * Optionally, add a database into a container to the application using .NET Aspire.
