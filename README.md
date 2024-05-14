@@ -23,4 +23,4 @@ In this lab you will:
 
 ## Next
 
-To get started, head over to the **Labs** directory to get started on Lab 1 - Add Aspire and Service Discovery to an existing app!
+To get started, head over to the **[Labs](/Labs/README.md)** directory to get started on Lab 1 - Add Aspire and Service Discovery to an existing app!

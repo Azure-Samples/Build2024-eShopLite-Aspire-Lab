@@ -83,3 +83,7 @@ Let's test it:
 
 1. Now going back the the .NET Aspire dashboard, click on **store** the endpoints, a new tab will open with the store website.
 1. The store works like before but now uses a PostgreSQL database in a container.
+
+---
+
+[<- Lab 3 - Deploy to Azure Container Apps](/Labs/Lab%203%20-%20Deploy/README.md) | [Final Solution ->](../Lab%20Final%20Solution/)
