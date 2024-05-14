@@ -165,3 +165,7 @@ When using azd outside of .NET Aspire, you have to specify which applications yo
    - `aspire-manifest.json`
 
 1. Open the `aspire-manifest.json` file and see which resources are being deployed.
+
+---
+
+[<- Lab 2 - Add Redis caching to the app](/Labs/Lab%202%20-%20Caching%20and%20Dashboard/README.md) | [Lab 4 - Add a database to the app ->](/Labs/Lab%204%20-%20Data/README.md)

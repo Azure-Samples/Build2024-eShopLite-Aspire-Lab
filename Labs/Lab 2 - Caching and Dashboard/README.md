@@ -121,3 +121,7 @@ Let's see the effect of our caching implementation in the .NET Aspire dashboard.
     ![Dashboard with the second request made the caching enabled](images/dashboard-redis-details.png)
 
 1. Try a few more time with-in or out the 10 second limit that was set in the **Products.razor** page.
+
+---
+
+[<- Lab 1 - Add Aspire and Service Discovery to an existing app](/Labs/Lab%201%20-%20Add%20Aspire%20and%20Service%20Discovery/README.md) | [Lab 3 - Deploy to Azure Container Apps ->](/Labs/Lab%203%20-%20Deploy/README.md)

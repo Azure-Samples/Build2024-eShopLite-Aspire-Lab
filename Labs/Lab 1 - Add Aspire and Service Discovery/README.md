@@ -114,3 +114,7 @@ Service discovery is a way for developers to use logical names instead of physic
 
 1. Click on the endpoint for the **store** project in the dashboard.
 1. A new tab appears with the same eShopLite application, but now the **Products** backend is being called through service discovery.
+
+---
+
+[<- Labs](../README.md) | [Lab 2 - Add Redis caching to the app ->](/Labs/Lab%202%20-%20Caching%20and%20Dashboard/README.md)
