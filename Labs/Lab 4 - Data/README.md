@@ -84,6 +84,59 @@ Let's test it:
 1. Now going back the the .NET Aspire dashboard, click on **store** the endpoints, a new tab will open with the store website.
 1. The store works like before but now uses a PostgreSQL database in a container.
 
+## Deploy/ Re-deploy the solution with a PostgreSQL database
+
+If you you are in a folder from where the solution was never deployed, `azd init` and `azd up` will deploy the solution without any problem.
+
+If you are in the same folder where the solution was previously deployed, we need to update the Infrastructure as Code (IaC) and config file. Trying to deploy immediately will result in an error because service 'pg' request **securedParameter** name "pg_password" and it's not yet define. 
+
+1. In a terminal window, navigate to the root folder of the solution. And execute the following command:
+   ```powershell
+   azd infra synth
+   ```
+
+    When prompt accept to overwrite the existing files.
+
+    Note that the `main.bicep` file has a new parameter `pg_password`.
+
+    ```bicep
+    @metadata({azd: {
+      type: 'generate'
+      config: {length:22}
+      }
+    })
+    @secure()
+    param pg_password string
+    ```
+
+1. The last step is to update the file `.azure/<environment>/config.json` with the new parameter `pg_password`. Replace the value with your version of a strong password. Ideally we could use a secret store like Azure Key Vault to store the password.
+
+    ```json
+    {
+        "infra": {
+            "parameters": {
+                "pg_password": "__YOUR_STRONG_PASSWORD_HERE__"
+            }
+        }
+    }
+
+1. Save all the files and deploy the solution with the following command:
+
+    ```powershell
+    azd up
+    ```
+
+1. Wait for the deployment to complete. It should be faster than the first time because most of the resources are already created.
+1. Once the deployment is over, click on the link `store` from the `(azd deploy)` outputs, or go to the Azure Portal and navigate to the resource group of `rg-<RANDOM_NAME>` and find the Azure Container Apps named **store**.
+1. The store should be working as before, but now it uses a PostgreSQL database.
+
+### Clean up
+ To delete all the resources created by the deployment, in Lab 3, you can execute the following command:
+
+```powershell
+azd down
+```
+
 ---
 
 [<- Lab 3 - Deploy to Azure Container Apps](/Labs/Lab%203%20-%20Deploy/README.md) | [Final Solution ->](../Lab%20Final%20Solution/)
