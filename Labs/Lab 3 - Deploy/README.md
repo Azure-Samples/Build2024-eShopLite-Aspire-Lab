@@ -127,6 +127,10 @@ winget install Microsoft.Azd
 
    ![Lab 3 Deploy - Store container](./images/lab03-04.png)
 
+> **Note**:
+>
+> At this point, the store app is available but there isn't any database. Trying to navigate to the product page will result in an error. We'll add a database in the next lab.
+
 ## Analyze the provisioning
 
 That might have seemed like magic, but we can have azd explain what it did by creating Bicep files for the resources it provisioned. This way we could put those infrastructure files in source control.
@@ -165,6 +169,12 @@ When using azd outside of .NET Aspire, you have to specify which applications yo
    - `aspire-manifest.json`
 
 1. Open the `aspire-manifest.json` file and see which resources are being deployed.
+
+1. To delete all the resources created by the deployment, you can execute the following command:
+
+    ```powershell
+    azd down
+    ```
 
 ---
 
