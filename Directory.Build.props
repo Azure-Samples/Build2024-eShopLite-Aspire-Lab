@@ -1,0 +1,10 @@
+<Project>
+  <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
+  <PropertyGroup>
+    <AspireVersion>8.0.0-*</AspireVersion>
+    <EntityFrameworkVersion>8.*</EntityFrameworkVersion>
+    <MicrosoftExtensionsVersion>8.*</MicrosoftExtensionsVersion>
+    <OpenTelemetryVersion>1.*</OpenTelemetryVersion>
+    <VisualStudioWebCodeGenerationVersion>8.*</VisualStudioWebCodeGenerationVersion>
+  </PropertyGroup>
+</Project>

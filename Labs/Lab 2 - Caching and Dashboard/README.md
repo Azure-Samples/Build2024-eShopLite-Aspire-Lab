@@ -99,6 +99,14 @@ Let's see the effect of our caching implementation in the .NET Aspire dashboard.
 
     ![Dashboard Resources](images/dashboard-resources.png)
 
+   > **NOTE**: You may be asked to enter an authentication token to access to the dashboard.
+   > 
+   > ![.NET Aspire dashboard login](./images/login.png)
+   > 
+   > The token can be found in the terminal console. Copy and paste it to the field and click "Log in".
+   > 
+   > ![.NET Aspire dashboard access token](./images/console-token.png)
+
 1. Click on the store the endpoints, a new tab will open with the store website.
 1. For the next few steps it will be easier to visualize the impact of the cache, to have the store website and the .NET Aspire dashboard side by side.
 1. In the .NET Aspire dashboard, click on **Traces** from the left menu. This display the traces of the requests made to the store website through the different resources.

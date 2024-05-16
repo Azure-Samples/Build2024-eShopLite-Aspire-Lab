@@ -112,6 +112,14 @@ Service discovery is a way for developers to use logical names instead of physic
 
     ![Aspire Dashboard](images/aspire-dashboard.png)
 
+   > **NOTE**: You may be asked to enter an authentication token to access to the dashboard.
+   > 
+   > ![.NET Aspire dashboard login](./images/login.png)
+   > 
+   > The token can be found in the terminal console. Copy and paste it to the field and click "Log in".
+   > 
+   > ![.NET Aspire dashboard access token](./images/console-token.png)
+
 1. Click on the endpoint for the **store** project in the dashboard.
 1. A new tab appears with the same eShopLite application, but now the **Products** backend is being called through service discovery.
 
