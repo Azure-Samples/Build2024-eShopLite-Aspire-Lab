@@ -123,13 +123,13 @@ winget install Microsoft.Azd
 
    ![Lab 3 Deploy - Products container](./images/lab03-03.png)
 
-1. Click the Container Apps instance, **store**, and note that **Application Url** does not contain the word **internal**. The store website is available to the Internet.
+1. Click the Container Apps instance, **store**, and note that **Application Url** does NOT contain the word **internal**. The store website is available to the Internet.
 
    ![Lab 3 Deploy - Store container](./images/lab03-04.png)
 
 > **Note**:
 >
-> At this point, the store app is available but there isn't any database. Trying to navigate to the product page will result in an error. We'll add a database in the next lab.
+> At this point, the store app is available but there is no database available on Azure. Therefore, trying to navigate to the product page will result in seeing this message, "There is a problem loading our products. Please try again later". We'll add a database in the next lab.
 
 ## Analyze the provisioning
 

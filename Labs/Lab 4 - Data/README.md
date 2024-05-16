@@ -33,8 +33,8 @@ The advantage of letting .NET Aspire create the container is that you don't need
 
 ## Configure Product API to use a PostgreSQL database
 
-1. Right click on the project **Product** and select  Add > .NET Aspire Component.
-1. In the search bar, at the top left of the Nuget Package Manager, type **Aspire.Npgsql.EntityFrameworkCore.PostgreSQL**. Select the component and click the install button. We are using this one because the solution uses Entity Framework, other the component **Aspire.Npgsql** would be used.
+1. Right click on the project **Product** and select  **Add > .NET Aspire Package**.
+1. In the search bar, at the top left of the Nuget Package Manager, type **Aspire.Npgsql.EntityFrameworkCore.PostgreSQL**. Select the component and click the install button. We are using this one because the solution uses Entity Framework; otherwise the component **Aspire.Npgsql** would be used.
 
     ![Add Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](./images/add-postgres-ef.png)
 
@@ -72,6 +72,14 @@ Let's test it:
 
     ![Dashboard with PostgreSQL](./images/dashboard-with-postgres.png)
 
+   > **NOTE**: You may be asked to enter an authentication token to access to the dashboard.
+   > 
+   > ![.NET Aspire dashboard login](./images/login.png)
+   > 
+   > The token can be found in the terminal console. Copy and paste it to the field and click "Log in".
+   > 
+   > ![.NET Aspire dashboard access token](./images/console-token.png)
+
 1. Click on the **pg-pgadmin** resource, a new tab will open with the pgAdmin website. It can takes a few seconds to completely load.
 1. From the pgAdmin website, you manage the products database. To visualize the products table, expand the **Aspire instances** node, then **pg > Databases > productsdb > Schemas > Tables**.
 
@@ -84,54 +92,19 @@ Let's test it:
 1. Now going back the the .NET Aspire dashboard, click on **store** the endpoints, a new tab will open with the store website.
 1. The store works like before but now uses a PostgreSQL database in a container.
 
-## Deploy/ Re-deploy the solution with a PostgreSQL database
+## Deploy / Re-deploy the solution with a PostgreSQL database
 
-If you you are in a folder from where the solution was never deployed, `azd init` and `azd up` will deploy the solution without any problem.
+1. If you you are in a folder from where the solution was never deployed, `azd init` then `azd up` will deploy the solution without any problem.
 
-If you are in the same folder where the solution was previously deployed, we need to update the Infrastructure as Code (IaC) and config file. Trying to deploy immediately will result in an error because service 'pg' request **securedParameter** name "pg_password" and it's not yet define. 
-
-1. In a terminal window, navigate to the root folder of the solution. And execute the following command:
-   ```powershell
-   azd infra synth
-   ```
-
-    When prompt accept to overwrite the existing files.
-
-    Note that the `main.bicep` file has a new parameter `pg_password`.
-
-    ```bicep
-    @metadata({azd: {
-      type: 'generate'
-      config: {length:22}
-      }
-    })
-    @secure()
-    param pg_password string
-    ```
-
-1. The last step is to update the file `.azure/<environment>/config.json` with the new parameter `pg_password`. Replace the value with your version of a strong password. Ideally we could use a secret store like Azure Key Vault to store the password.
-
-    ```json
-    {
-        "infra": {
-            "parameters": {
-                "pg_password": "__YOUR_STRONG_PASSWORD_HERE__"
-            }
-        }
-    }
-
-1. Save all the files and deploy the solution with the following command:
-
-    ```powershell
-    azd up
-    ```
+   If you are in the same folder where the solution was previously deployed, then just run `azd up` to deploy the updated application including the PostgreSQL database.
 
 1. Wait for the deployment to complete. It should be faster than the first time because most of the resources are already created.
 1. Once the deployment is over, click on the link `store` from the `(azd deploy)` outputs, or go to the Azure Portal and navigate to the resource group of `rg-<RANDOM_NAME>` and find the Azure Container Apps named **store**.
 1. The store should be working as before, but now it uses a PostgreSQL database.
 
 ### Clean up
- To delete all the resources created by the deployment, in Lab 3, you can execute the following command:
+
+To delete all the resources created by the deployment, in Lab 3, you can execute the following command:
 
 ```powershell
 azd down
