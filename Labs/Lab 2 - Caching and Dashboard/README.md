@@ -121,7 +121,7 @@ Let's see the effect of our caching implementation in the .NET Aspire dashboard.
 1. Now refresh the store website displaying the product list.
 1. Looking back at the .NET Aspire dashboard, new lines were added, but this time the **Spans** column for the line **store: GET /products** has only **store**. This is because the products list was retrieved from the cache.
 
-    ![Dashboard with the second request made the caching enabled](images/dashboard-showing cached.png)
+    ![Dashboard with the second request made the caching enabled](images/dashboard-showing-cached.png)
 
 1. Click on the **View** link in the column details of the line **store: GET /products**. This will display the details of the request.
 1. Note that the detail line **DATA redis GET**. This is where the cache was used instead of the database.
